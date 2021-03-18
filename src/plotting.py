@@ -27,7 +27,7 @@ processed_temperature_data = np.append(temperature_data, temperature_kelvin,1)
 
 # Create a figure of the processed data
 temperature_figure = plt.figure()
-temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=35, color='green')
+temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=35, color='red')
 plt.show(block=True)
 temperature_figure.savefig('results/temperature-over-time.pdf')
 
