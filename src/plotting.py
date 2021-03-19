@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
+# Create a function to read the data file
 def read_data(filename,delimiter=',',starting_row=0):
     """This function reads data from a specified filename. 
     The specified filename should point to a .csv file."""
@@ -24,10 +25,9 @@ temperature_kelvin = (temperature_data[:,1,None] - 32) * 5/9 + 273
 # Append this new column to the existing temperature_data array
 processed_temperature_data = np.append(temperature_data, temperature_kelvin,1)
 
-
 # Create a figure of the processed data
 temperature_figure = plt.figure()
-temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=30, color='green')
+temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=40, color='green')
 plt.show(block=True)
 temperature_figure.savefig('results/temperature-over-time.pdf')
 
