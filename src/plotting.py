@@ -27,7 +27,8 @@ processed_temperature_data = np.append(temperature_data, temperature_kelvin,1)
 
 # Create a figure of the processed data
 temperature_figure = plt.figure()
-temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=40, color='green')
+temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=35, color='blue')
+
 plt.show(block=True)
 temperature_figure.savefig('results/temperature-over-time.pdf')
 
@@ -35,7 +36,7 @@ all_data = pd.read_csv("data/110-tavg-12-12-1950-2020.csv", index_col='Date', he
 all_data.info()
 all_data.to_json("results/data_output.json")
 
-print("hello world", all_data.loc['195012':'197512','Value'])
+
 
 json_data = pd.read_json("results/data_output.json")
 json_data.info()
