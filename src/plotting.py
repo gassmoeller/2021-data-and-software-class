@@ -30,7 +30,7 @@ def process_data(temperature_data):
 def plot_data(processed_temperature_data, plot_filename):
     # Create a figure of the processed data
     temperature_figure = plt.figure()
-    temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=50, color='blue')
+    temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=60, color='blue')
 
     plt.show(block=True)
     temperature_figure.savefig(plot_filename)
