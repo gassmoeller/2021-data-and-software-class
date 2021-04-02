@@ -53,7 +53,7 @@ def plot():
     plot_filename = os.path.join(results_directory,plot_file)
     json_filename = os.path.join(results_directory,json_output_file)
 
-    temperature_data = read_data(input_filename, starting_row=5)
+    temperature_data = read_data(input_filename, starting_row=0)
     processed_temperature_data = process_data(temperature_data)
     plot_data(processed_temperature_data, plot_filename)
     convert_data(input_filename, json_filename)
