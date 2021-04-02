@@ -9,14 +9,14 @@ import os
 import sys
 
 # Create an array (a multi-dimensional table) out of our data file, full of text
-all_data = np.genfromtxt("stable_isotope_data_assignment2 - Sheet1.csv", delimiter=',',skip_header=3)
+all_data = np.genfromtxt("stable_isotope_data_assignment2.csv", delimiter=',',skip_header=3)
 
 # Select the data range we are interested in, convert it into a new array, full of numbers
-temperature_data = np.array(all_data[3:,:], dtype=float)
-
-    # Select the data range we are interested in, convert it into a new array, full of numbers
 isotope_data = np.array(all_data[3:,:], dtype=float)
-    return temperature_data
+
+ # Select the data range we are interested in, convert it into a new array, full of numbers
+isotope_data = np.array(all_data[3:,:], dtype=float)
+print(isotope_data)
 
 # Append this new column to the existing isotope_data array
 processed_isotope_data = np.append(isotope_data, isotope_data,1)
