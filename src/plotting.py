@@ -47,5 +47,5 @@ def convert_data(filename, output_filename):
     convert_data(input_filename, json_filename)
 
 if __name__ == "__main__":
-    print(sys.argv)
+    print(sys.argv)[1]
     plot()
