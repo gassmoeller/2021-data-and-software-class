@@ -1,16 +1,19 @@
 #!/bin/python
 
+"""This is a simple plotting library."""
+
 # Import the libraries we are using. It is good practice to import all necessary
 # libraries in the first lines of a file.
+import os
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import os
-import sys
+
 
 # Create a function to read the data file
 def read_data(filename,delimiter=',',starting_row=0):
-    """This function reads data from a specified filename. 
+    """This function reads data from a specified filename.
     The specified filename should point to a .csv file."""
     # Create an array (a multi-dimensional table) out of our data file, full of text
     all_data = np.genfromtxt(filename, delimiter=delimiter,skip_header=5)
@@ -30,7 +33,7 @@ def process_data(temperature_data):
 def plot_data(processed_temperature_data, plot_filename):
     # Create a figure of the processed data
     temperature_figure = plt.figure()
-    temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=35, color='blue')
+    plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=35, color='blue')
 
     plt.show(block=True)
     temperature_figure.savefig(plot_filename)
