@@ -56,4 +56,4 @@ def test_convert_data():
     input_data = pd.read_csv(input_filename, index_col='Date', header=4)
     output_data = pd.read_json(json_filename)
 
-    assert (True)
+    assert input_data.info() is output_data.info()
