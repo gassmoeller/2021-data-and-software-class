@@ -1,31 +1,39 @@
 #!/bin/python
 
+"""This is a simple plotting library."""
+
 # Import the libraries we are using. It is good practice to import all necessary
 # libraries in the first lines of a file.
+import os
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import os
-import sys
 
-# Create an array (a multi-dimensional table) out of our data file, full of text
-all_data = np.genfromtxt("110-tavg-12-12-1950-2020.csv", delimiter=',',skip_header=)
 
-# Select the data range we are interested in, convert it into a new array, full of numbers
-temperature_data = np.array(all_data[3:,:], dtype=float)
+# Create a function to read the data file
+def read_data(filename,delimiter=',',starting_row=0):
+    """This function reads data from a specified filename.
+    The specified filename should point to a .csv file."""
+    # Create an array (a multi-dimensional table) out of our data file, full of text
+    all_data = np.genfromtxt(filename, delimiter=delimiter,skip_header=5)
 
- # Select the data range we are interested in, convert it into a new array, full of numbers
-temperature_data = np.array(all_data[3:,:], dtype=float)
-print(temperature_data)
+    # Select the data range we are interested in, convert it into a new array, full of numbers
+    temperature_data = np.array(all_data[starting_row:,:], dtype=float)
+    return temperature_data
 
-# Append this new column to the existing temperature_data array
-processed_temperature_data = np.append(temperature_data, temperature_data,1)
-print (processed_temperature_data)
+def process_data(temperature_data):
+    # Compute a new column by multiplying column number 1 to Kelvin
+    temperature_kelvin = (temperature_data[:,1,None] - 32) * 5/9 + 273
+
+    # Append this new column to the existing temperature_data array
+    processed_temperature_data = np.append(temperature_data, temperature_kelvin,1)
+    return processed_temperature_data
 
 def plot_data(processed_temperature_data, plot_filename):
     # Create a figure of the processed data
     temperature_figure = plt.figure()
-    temperature_plot = plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=35, color='blue')
+    plt.bar (processed_temperature_data[:,0],processed_temperature_data[:,2], width=35, color='blue')
 
     plt.show(block=True)
     temperature_figure.savefig(plot_filename)
