@@ -1,4 +1,7 @@
-import sys, os
+"""This file contains all tests for our plotting library."""
+
+import sys
+import os
 import numpy as np
 import pandas as pd
 
@@ -9,16 +12,19 @@ sys.path.append(os.path.join(
 import src.plotting as plotting
 
 def test_plot():
-    assert(plotting.plot() == None)
+    """A test for the plot() function."""
+    assert(plotting.plot() is None)
 
 def test_process_data():
+    """A test for the process_data() function."""
     input_data = np.array([[0,32],[1,212]])
     function_output = plotting.process_data(input_data)
     expected_output = np.array([[0,32,273],[1,212,373]])
-    
+
     assert(np.all(function_output == expected_output))
 
 def test_read_data():
+    """A test for the read_data() function."""
     input_file = "110-tavg-12-12-1950-2020.csv"
     data_directory = os.path.realpath(os.path.join(os.path.dirname(__file__),"..","data"))
     input_filename = os.path.join(data_directory,input_file)
@@ -28,6 +34,7 @@ def test_read_data():
     assert(temperature_data[0,1] == 51.39)
 
 def test_plot_data():
+    """A test for the plot_data() function."""
     plot_file = "test_plot_data.pdf"
     results_directory = os.path.realpath(os.path.join(os.path.dirname(__file__),"..","results"))
     plot_filename = os.path.join(results_directory,plot_file)
@@ -42,6 +49,7 @@ def test_plot_data():
     assert (os.path.exists(plot_filename))
 
 def test_convert_data():
+    """A test for the convert_data() function."""
     input_file = "110-tavg-12-12-1950-2020.csv"
     json_output_file = "data_output.json"
 
