@@ -14,7 +14,7 @@ def test_plot():
 def test_process_data():
     input_data = np.array([[-3,1.0288],[1,1.0288]])
     function_output = plotting.process_data(input_data)
-    expected_output = np.array([[-3,1.0288],[1,1.0288]])
+    expected_output = np.array([[-3,1.0288,-1.7],[1,1.0288,2.3]])
     
     assert(np.all(function_output == expected_output))
 
@@ -24,15 +24,15 @@ def test_read_data():
     input_filename = os.path.join(data_directory,input_file)
     isotope_data = plotting.read_data(input_filename, starting_row=3)
 
-    assert(isotope_data.shape == (54,2))
-    assert(isotope_data[0,1] == -5.85)
+    assert(isotope_data.shape == (57,2))
+    assert(isotope_data[0,1] == -1.8)
 
 def test_plot_data():
     plot_file = "test_plot_data.pdf"
     results_directory = os.path.realpath(os.path.join(os.path.dirname(__file__),"..","results"))
     plot_filename = os.path.join(results_directory,plot_file)
 
-    input_data = np.array([[-3,1.0288],[1,1.0288]])
+    input_data = np.array([[-3,1.0288,1.5],[1,1.0288,1.5]])
 
     if os.path.exists(plot_filename):
         os.remove(plot_filename)
@@ -53,7 +53,7 @@ def test_convert_data():
 
     plotting.convert_data(input_filename, json_filename)
 
-    input_data = pd.read_csv(input_filename, index_col='Carbon', header=4)
+    input_data = pd.read_csv(input_filename, header=2)
     output_data = pd.read_json(json_filename)
 
     assert (True)
